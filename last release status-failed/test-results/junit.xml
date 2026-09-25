@@ -1,0 +1,748 @@
+<testsuites id="" name="" tests="65" failures="7" skipped="0" errors="0" time="1020.704892">
+<testsuite name="flow-deployment/create-code.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="7" failures="0" skipped="0" time="106.686" errors="0">
+<testcase name="6.1 - Positive Create Config › 6.1.1 – Upload Code as Config Using Supported File Format" classname="flow-deployment/create-code.spec.ts" time="18.049">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="6.1 - Positive Create Config › 6.1.2 – Set Valid File Path for Code as Config" classname="flow-deployment/create-code.spec.ts" time="16.234">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="6.1 - Positive Create Config › 6.1.3 – Upload Code as Config Using JSON Format" classname="flow-deployment/create-code.spec.ts" time="16.064">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="6.2 - Negative Create Config › 6.2.1 – Upload Unsupported File Type" classname="flow-deployment/create-code.spec.ts" time="12.548">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="6.2 - Negative Create Config › 6.2.4 – File Path Empty" classname="flow-deployment/create-code.spec.ts" time="13.275">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="6.2 - Negative Create Config › 6.2.5 – Invalid File Path Format" classname="flow-deployment/create-code.spec.ts" time="16.468">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="6.2 - Negative Create Config › 6.2.6 – Navigate Blocked When Validation Fails" classname="flow-deployment/create-code.spec.ts" time="14.048">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/create-new-deployment/basic-details.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="1" failures="1" skipped="0" time="180.123" errors="0">
+<testcase name="Create New Deployment - ZIP Upload (Vue.js App) › Create Deployment with Default Prefilled Values" classname="flow-deployment/create-new-deployment/basic-details.spec.ts" time="180.123">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+<failure message="basic-details.spec.ts:53:9 Create Deployment with Default Prefilled Values" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/create-new-deployment/basic-details.spec.ts:53:9 › Create New Deployment - ZIP Upload (Vue.js App) › Create Deployment with Default Prefilled Values 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.setInputFiles: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for locator('input[formcontrolname="zipfileInput"]')
+
+
+      61 |
+      62 |         const fileInput = page.locator('input[formcontrolname="zipfileInput"]');
+    > 63 |         await fileInput.setInputFiles({
+         |         ^
+      64 |             name: 'vuejs-app-final.zip',
+      65 |             mimeType: 'application/zip',
+      66 |             buffer: buffer
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/create-new-deployment/basic-details.spec.ts:63:9
+
+    Error Context: ../../test-results/flow-deployment-create-new-345c4-th-Default-Prefilled-Values-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.setInputFiles: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for locator('input[formcontrolname="zipfileInput"]')
+
+
+      61 |
+      62 |         const fileInput = page.locator('input[formcontrolname="zipfileInput"]');
+    > 63 |         await fileInput.setInputFiles({
+         |         ^
+      64 |             name: 'vuejs-app-final.zip',
+      65 |             mimeType: 'application/zip',
+      66 |             buffer: buffer
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/create-new-deployment/basic-details.spec.ts:63:9
+
+    Error Context: ../../test-results/flow-deployment-create-new-345c4-th-Default-Prefilled-Values-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[Selecting project and environment...
+Navigating to applications page...
+Starting ZIP upload flow from URL: https://nimbuz-users-artifacts.s3.ap-southeast-1.amazonaws.com/UI-Automation/vuejs-app-final.zip
+
+[[ATTACHMENT|flow-deployment-create-new-345c4-th-Default-Prefilled-Values-chromium/error-context.md]]
+Selecting project and environment...
+Navigating to applications page...
+Starting ZIP upload flow from URL: https://nimbuz-users-artifacts.s3.ap-southeast-1.amazonaws.com/UI-Automation/vuejs-app-final.zip
+
+[[ATTACHMENT|flow-deployment-create-new-345c4-th-Default-Prefilled-Values-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/create-new-deployment/create-basic-details.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="7" failures="0" skipped="0" time="104.952" errors="0">
+<testcase name="Create New Deployment - General Details Phase › 3.1.1 - Create Deployment with Default Prefilled Values" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="14.595">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+<system-out>
+<![CDATA[Starting ZIP upload flow from URL: https://nimbuz-users-artifacts.s3.ap-southeast-1.amazonaws.com/UI-Automation/vuejs-app-final.zip
+Filling basic details...
+]]>
+</system-out>
+</testcase>
+<testcase name="Create New Deployment - General Details Phase › 3.1.2 - Create Deployment With Edited Deployment Name" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="18.604">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Create New Deployment - General Details Phase › 3.1.3 - Create Deployment With Multiple Replicas" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="13.415">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Create New Deployment - General Details Phase › 3.1.4 - Create Deployment With Different Instance Type" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="14.248">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Create New Deployment - General Details Phase › 3.1.5 - Create Deployment with Optional Fields" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="18.924">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Create New Deployment - General Details Phase › Negative Validations › 3.2.8 – Invalid Health Endpoint Format" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="10.956">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Create New Deployment - General Details Phase › Negative Validations › 3.2.9 – Invalid Ephemeral Storage Value" classname="flow-deployment/create-new-deployment/create-basic-details.spec.ts" time="14.21">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="13" failures="0" skipped="0" time="138.181" errors="0">
+<testcase name="4.1 - Positive Create Environment variables › 4.1.1 – Add Single or Multiple Environment Variables Using Key–Value Fields" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="10.26">
+</testcase>
+<testcase name="4.1 - Positive Create Environment variables › 4.1.2 – Add Environment Variables Using Raw Editor (.env Format)" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="10.516">
+</testcase>
+<testcase name="4.1 - Positive Create Environment variables › 4.1.3 – Add Environment Variables Using JSON Format" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="12.594">
+</testcase>
+<testcase name="4.1 - Positive Create Environment variables › 4.1.6 – Auto-Save Environment Variable on Continue Without Clicking Add Env to List" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="12.632">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.1 – Variable Name Empty" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="10.056">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.2 – Variable Value Empty" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="13.205">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.3 – Variable Name and Value Both Empty" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="9.134">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.4 – Duplicate Variable Name" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="9.772">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.5 - Invalid Characters in Variable Name" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="8.872">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.6 - Partial Entry in Multiple Rows" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="7.931">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.7 – Invalid Raw Editor Format (.env)" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="7.598">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.8 – Invalid JSON Format" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="8.404">
+</testcase>
+<testcase name="4.2 - Negative Create Environment variables › 4.2.9 – Proceed Without Saving Any Environment Variables" classname="flow-deployment/create-new-deployment/create-environment-variables.spec.ts" time="17.207">
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/create-new-deployment/module-review-page.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="4" failures="0" skipped="0" time="63.977" errors="0">
+<testcase name="Deployment Review Page Flow › Positive Scenarios › Should display all deployment modules in a readable summary" classname="flow-deployment/create-new-deployment/module-review-page.spec.ts" time="18.345">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Deployment Review Page Flow › Positive Scenarios › Should allow editing basic details and returning to review page" classname="flow-deployment/create-new-deployment/module-review-page.spec.ts" time="19.024">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Deployment Review Page Flow › Positive Scenarios › Should allow editing environment variables and returning to review page" classname="flow-deployment/create-new-deployment/module-review-page.spec.ts" time="13.53">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="Deployment Review Page Flow › Negative Scenarios › Should disable Submit button during deployment submission" classname="flow-deployment/create-new-deployment/module-review-page.spec.ts" time="13.078">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/create-secrets/create-secrets.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="18" failures="0" skipped="0" time="340.023" errors="0">
+<testcase name="5.1 - Positive Create Secrets › 5.1.1 – Add Single or Multiple Secrets Using Key–Value Fields" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="15.94">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.1 - Positive Create Secrets › 5.1.2 – Add Secrets Using Raw Editor (.env Format)" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="12.616">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.1 - Positive Create Secrets › 5.1.3 – Add Secrets Using JSON Format" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="17.28">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.1 - Positive Create Secrets › 5.1.4 - Auto-Save Secrets on Continue Without Clicking Add Secret to List" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="16.402">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.1 – Secret Key Empty" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="26.067">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.2 – Secret Value Empty" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="23.957">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.3 – Secret Key and Value Both Empty" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="16.958">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.4 – Invalid Characters in Secret Key" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="17.558">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.5 – Invalid Raw Editor Format for Secrets" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="16.689">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.6 – Invalid JSON Format for Secrets" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="12.595">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.7 – Navigation blocked When Secret Validation Fails" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="16.792">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.8 – Add Secrets by Uploading a File (.env)" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="13.697">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.9 – Add Secrets by Uploading a JSON File" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="26.126">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.10 – Upload Secrets File with Invalid or Malformed Entries" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="23.512">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.11 – Upload Invalid JSON Secrets File" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="14.455">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.12 – Upload Unsupported Secrets File Format" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="24.791">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.13 – Upload Empty Secrets File" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="24.229">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+<testcase name="5.2 - Negative Create Secrets › 5.2.14 – Partial Entry in Multiple Rows" classname="flow-deployment/create-secrets/create-secrets.spec.ts" time="20.359">
+<properties>
+<property name="slow" value="">
+</property>
+</properties>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="6" failures="1" skipped="0" time="289.117" errors="0">
+<testcase name="Compressed File (ZIP/TAR) Deployment Flow › Positive Scenarios › 2.1.1 - Deployment via ZIP File" classname="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" time="41.774">
+</testcase>
+<testcase name="Compressed File (ZIP/TAR) Deployment Flow › Positive Scenarios › 2.1.2 - Deployment via TAR File" classname="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" time="40.473">
+</testcase>
+<testcase name="Compressed File (ZIP/TAR) Deployment Flow › Positive Scenarios › 2.1.3 - Multiple Deployments with Same File Name (Same Project)" classname="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" time="77.815">
+</testcase>
+<testcase name="Compressed File (ZIP/TAR) Deployment Flow › Positive Scenarios › 2.1.4 - Multiple Deployments with Same File Name (Different Projects)" classname="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" time="68.224">
+</testcase>
+<testcase name="Compressed File (ZIP/TAR) Deployment Flow › Negative Scenarios › Should show error if the application name extracted from ZIP already exists" classname="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" time="45.763">
+<failure message="module-deploy-compressed-file.spec.ts:187:13 Should show error if the application name extracted from ZIP already exists" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts:187:13 › Compressed File (ZIP/TAR) Deployment Flow › Negative Scenarios › Should show error if the application name extracted from ZIP already exists 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.text-danger').filter({ hasText: 'Name is already taken' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('.text-danger').filter({ hasText: 'Name is already taken' })
+
+
+      198 |             await nameInput.blur();
+      199 |
+    > 200 |             await expect(page.locator('.text-danger').filter({ hasText: 'Name is already taken' })).toBeVisible();
+          |                                                                                                     ^
+      201 |
+      202 |             if (fs.existsSync(existingPath)) fs.unlinkSync(existingPath);
+      203 |         });
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts:200:101
+
+    Error Context: ../../test-results/flow-deployment-deployment-45144-ted-from-ZIP-already-exists-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.text-danger').filter({ hasText: 'Name is already taken' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('.text-danger').filter({ hasText: 'Name is already taken' })
+
+
+      198 |             await nameInput.blur();
+      199 |
+    > 200 |             await expect(page.locator('.text-danger').filter({ hasText: 'Name is already taken' })).toBeVisible();
+          |                                                                                                     ^
+      201 |
+      202 |             if (fs.existsSync(existingPath)) fs.unlinkSync(existingPath);
+      203 |         });
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts:200:101
+
+    Error Context: ../../test-results/flow-deployment-deployment-45144-ted-from-ZIP-already-exists-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|flow-deployment-deployment-45144-ted-from-ZIP-already-exists-chromium/error-context.md]]
+
+[[ATTACHMENT|flow-deployment-deployment-45144-ted-from-ZIP-already-exists-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Compressed File (ZIP/TAR) Deployment Flow › Negative Scenarios › Should show error if file exceeds the 500MB limit" classname="flow-deployment/deployment-types/module-deploy-compressed-file.spec.ts" time="15.068">
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/deployment-types/module-deploy-vcs.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="3" failures="3" skipped="0" time="377.897" errors="0">
+<testcase name="VCS (Version Control System) Deployment Flow › Positive Scenarios › 1.1.3 – Fetch Repositories from VCS" classname="flow-deployment/deployment-types/module-deploy-vcs.spec.ts" time="50.513">
+<failure message="module-deploy-vcs.spec.ts:43:13 1.1.3 – Fetch Repositories from VCS" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/deployment-types/module-deploy-vcs.spec.ts:43:13 › VCS (Version Control System) Deployment Flow › Positive Scenarios › 1.1.3 – Fetch Repositories from VCS 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('select[formcontrolname="selectedRepo"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('select[formcontrolname="selectedRepo"]')
+
+
+      51 |
+      52 |             const repoSelect = page.locator('select[formcontrolname="selectedRepo"]');
+    > 53 |             await expect(repoSelect).toBeVisible();
+         |                                      ^
+      54 |             await expect(repoSelect).not.toContainText('No Repo available', { timeout: 30000 });
+      55 |
+      56 |             const repoCount = await repoSelect.locator('option').count();
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-vcs.spec.ts:53:38
+
+    Error Context: ../../test-results/flow-deployment-deployment-87503-Fetch-Repositories-from-VCS-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('select[formcontrolname="selectedRepo"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('select[formcontrolname="selectedRepo"]')
+
+
+      51 |
+      52 |             const repoSelect = page.locator('select[formcontrolname="selectedRepo"]');
+    > 53 |             await expect(repoSelect).toBeVisible();
+         |                                      ^
+      54 |             await expect(repoSelect).not.toContainText('No Repo available', { timeout: 30000 });
+      55 |
+      56 |             const repoCount = await repoSelect.locator('option').count();
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-vcs.spec.ts:53:38
+
+    Error Context: ../../test-results/flow-deployment-deployment-87503-Fetch-Repositories-from-VCS-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|flow-deployment-deployment-87503-Fetch-Repositories-from-VCS-chromium/error-context.md]]
+
+[[ATTACHMENT|flow-deployment-deployment-87503-Fetch-Repositories-from-VCS-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="VCS (Version Control System) Deployment Flow › Positive Scenarios › 1.1.4 – Fetch Branches for Selected Repository" classname="flow-deployment/deployment-types/module-deploy-vcs.spec.ts" time="87.287">
+<failure message="module-deploy-vcs.spec.ts:60:13 1.1.4 – Fetch Branches for Selected Repository" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/deployment-types/module-deploy-vcs.spec.ts:60:13 › VCS (Version Control System) Deployment Flow › Positive Scenarios › 1.1.4 – Fetch Branches for Selected Repository 
+
+    Error: expect(locator).not.toContainText(expected) failed
+
+    Locator: locator('select[formcontrolname="selectedRepo"]')
+    Expected substring: not "No Repo available"
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "not toContainText" with timeout 30000ms
+      - waiting for locator('select[formcontrolname="selectedRepo"]')
+
+
+      64 |
+      65 |             const repoSelect = page.locator('select[formcontrolname="selectedRepo"]');
+    > 66 |             await expect(repoSelect).not.toContainText('No Repo available', { timeout: 30000 });
+         |                                          ^
+      67 |
+      68 |             const branchResponsePromise = page.waitForResponse(res => res.request().method() === 'GET' && res.url().includes('branch'), { timeout: 30000 }).catch(() => null);
+      69 |
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-vcs.spec.ts:66:42
+
+    Error Context: ../../test-results/flow-deployment-deployment-ef3ed-hes-for-Selected-Repository-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).not.toContainText(expected) failed
+
+    Locator: locator('select[formcontrolname="selectedRepo"]')
+    Expected substring: not "No Repo available"
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "not toContainText" with timeout 30000ms
+      - waiting for locator('select[formcontrolname="selectedRepo"]')
+
+
+      64 |
+      65 |             const repoSelect = page.locator('select[formcontrolname="selectedRepo"]');
+    > 66 |             await expect(repoSelect).not.toContainText('No Repo available', { timeout: 30000 });
+         |                                          ^
+      67 |
+      68 |             const branchResponsePromise = page.waitForResponse(res => res.request().method() === 'GET' && res.url().includes('branch'), { timeout: 30000 }).catch(() => null);
+      69 |
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-vcs.spec.ts:66:42
+
+    Error Context: ../../test-results/flow-deployment-deployment-ef3ed-hes-for-Selected-Repository-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|flow-deployment-deployment-ef3ed-hes-for-Selected-Repository-chromium/error-context.md]]
+
+[[ATTACHMENT|flow-deployment-deployment-ef3ed-hes-for-Selected-Repository-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="VCS (Version Control System) Deployment Flow › Negative Scenarios › 1.2.9 – Concurrent – Same Environment, Different Repo, Different Branch, Same Deployment Name" classname="flow-deployment/deployment-types/module-deploy-vcs.spec.ts" time="240.097">
+<failure message="module-deploy-vcs.spec.ts:118:13 1.2.9 – Concurrent – Same Environment, Different Repo, Different Branch, Same Deployment Name" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/deployment-types/module-deploy-vcs.spec.ts:118:13 › VCS (Version Control System) Deployment Flow › Negative Scenarios › 1.2.9 – Concurrent – Same Environment, Different Repo, Different Branch, Same Deployment Name 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for locator('select[formcontrolname="selectedRepo"]')
+
+
+      127 |             await page.getByTestId('option-type-github').click();
+      128 |
+    > 129 |             await page.locator('select[formcontrolname="selectedRepo"]').selectOption({ index: 1 });
+          |                                                                          ^
+      130 |
+      131 |             const nameInput = page.locator('input[formcontrolname="name"]');
+      132 |             await nameInput.fill('existing-app-name');
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-vcs.spec.ts:129:74
+
+    Error Context: ../../test-results/flow-deployment-deployment-daf05-Branch-Same-Deployment-Name-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for locator('select[formcontrolname="selectedRepo"]')
+
+
+      127 |             await page.getByTestId('option-type-github').click();
+      128 |
+    > 129 |             await page.locator('select[formcontrolname="selectedRepo"]').selectOption({ index: 1 });
+          |                                                                          ^
+      130 |
+      131 |             const nameInput = page.locator('input[formcontrolname="name"]');
+      132 |             await nameInput.fill('existing-app-name');
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/deployment-types/module-deploy-vcs.spec.ts:129:74
+
+    Error Context: ../../test-results/flow-deployment-deployment-daf05-Branch-Same-Deployment-Name-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|flow-deployment-deployment-daf05-Branch-Same-Deployment-Name-chromium/error-context.md]]
+
+[[ATTACHMENT|flow-deployment-deployment-daf05-Branch-Same-Deployment-Name-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/flow-pause-resume/pause-resume.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="2" failures="2" skipped="0" time="88.143" errors="0">
+<testcase name="12.1   Positive Pause/Resume Application › 12.1.1 – Pause Application Successfully" classname="flow-deployment/flow-pause-resume/pause-resume.spec.ts" time="52.811">
+<failure message="pause-resume.spec.ts:39:9 12.1.1 – Pause Application Successfully" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/flow-pause-resume/pause-resume.spec.ts:39:9 › 12.1   Positive Pause/Resume Application › 12.1.1 – Pause Application Successfully 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Application paused successfully').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for getByText('Application paused successfully').first()
+
+
+      59 |         await confirmBtn.click();
+      60 |
+    > 61 |         await expect(page.getByText('Application paused successfully').first()).toBeVisible({ timeout: 15000 });
+         |                                                                                 ^
+      62 |     });
+      63 |
+      64 |     test('12.1.2 – Resume Application Successfully', async ({ page }) => {
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/flow-pause-resume/pause-resume.spec.ts:61:81
+
+    Error Context: ../../test-results/flow-deployment-flow-pause-c6a5d-se-Application-Successfully-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Application paused successfully').first()
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for getByText('Application paused successfully').first()
+
+
+      59 |         await confirmBtn.click();
+      60 |
+    > 61 |         await expect(page.getByText('Application paused successfully').first()).toBeVisible({ timeout: 15000 });
+         |                                                                                 ^
+      62 |     });
+      63 |
+      64 |     test('12.1.2 – Resume Application Successfully', async ({ page }) => {
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/flow-pause-resume/pause-resume.spec.ts:61:81
+
+    Error Context: ../../test-results/flow-deployment-flow-pause-c6a5d-se-Application-Successfully-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|flow-deployment-flow-pause-c6a5d-se-Application-Successfully-chromium/error-context.md]]
+
+[[ATTACHMENT|flow-deployment-flow-pause-c6a5d-se-Application-Successfully-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="12.1   Positive Pause/Resume Application › 12.1.2 – Resume Application Successfully" classname="flow-deployment/flow-pause-resume/pause-resume.spec.ts" time="35.332">
+<failure message="pause-resume.spec.ts:64:9 12.1.2 – Resume Application Successfully" type="FAILURE">
+<![CDATA[  [chromium] › flow-deployment/flow-pause-resume/pause-resume.spec.ts:64:9 › 12.1   Positive Pause/Resume Application › 12.1.2 – Resume Application Successfully 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('deployment-action-resume')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByTestId('deployment-action-resume')
+
+
+      71 |
+      72 |         const resumeOption = page.getByTestId('deployment-action-resume');
+    > 73 |         await expect(resumeOption).toBeVisible({ timeout: 5000 });
+         |                                    ^
+      74 |         await resumeOption.click();
+      75 |
+      76 |         const modal = page.getByTestId('deploy-confirmation-modal').first();
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/flow-pause-resume/pause-resume.spec.ts:73:36
+
+    Error Context: ../../test-results/flow-deployment-flow-pause-2379b-me-Application-Successfully-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('deployment-action-resume')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByTestId('deployment-action-resume')
+
+
+      71 |
+      72 |         const resumeOption = page.getByTestId('deployment-action-resume');
+    > 73 |         await expect(resumeOption).toBeVisible({ timeout: 5000 });
+         |                                    ^
+      74 |         await resumeOption.click();
+      75 |
+      76 |         const modal = page.getByTestId('deploy-confirmation-modal').first();
+        at /builds/dt/paas/nimbuz-portal-fe/e2e/playwright/flow-deployment/flow-pause-resume/pause-resume.spec.ts:73:36
+
+    Error Context: ../../test-results/flow-deployment-flow-pause-2379b-me-Application-Successfully-chromium-retry1/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|flow-deployment-flow-pause-2379b-me-Application-Successfully-chromium/error-context.md]]
+
+[[ATTACHMENT|flow-deployment-flow-pause-2379b-me-Application-Successfully-chromium-retry1/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/module-delete-deploy/delete-deploy.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="1" failures="0" skipped="0" time="20.658" errors="0">
+<testcase name="Deployment Deletion Flow › Should delete a deployment from the Settings page" classname="flow-deployment/module-delete-deploy/delete-deploy.spec.ts" time="20.658">
+<system-out>
+<![CDATA[Deleting deployment: vuejs-app-final-01
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="flow-deployment/module-redeploy/redeploy.spec.ts" timestamp="2026-04-27T09:11:18.160Z" hostname="chromium" tests="3" failures="0" skipped="0" time="27.402" errors="0">
+<testcase name="14.1 - Positive Redeploy › 14.1.1 – Re-deploy Application Successfully" classname="flow-deployment/module-redeploy/redeploy.spec.ts" time="9.059">
+<system-out>
+<![CDATA[BROWSER LOG: Angular is running in development mode.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: Current document does not have a doctype. This may cause some Angular Material components not to behave as expected.
+BROWSER LOG: AG Grid: As of v32, suppressLoadingOverlay is deprecated. Use `loading`=false instead.
+ Are you sure you want to redeploy this application? 
+]]>
+</system-out>
+</testcase>
+<testcase name="14.2 - Negative Redeploy › 14.2.1 – Re-deploy Fails Due to Build Error" classname="flow-deployment/module-redeploy/redeploy.spec.ts" time="8.532">
+<system-out>
+<![CDATA[BROWSER LOG: Angular is running in development mode.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: Current document does not have a doctype. This may cause some Angular Material components not to behave as expected.
+BROWSER LOG: AG Grid: As of v32, suppressLoadingOverlay is deprecated. Use `loading`=false instead.
+BROWSER LOG: Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+BROWSER LOG: {details: Re-deployment failed during build.}
+]]>
+</system-out>
+</testcase>
+<testcase name="14.2 - Negative Redeploy › 14.2.3 – Re-deploy Fails Due to Repository Access Issue" classname="flow-deployment/module-redeploy/redeploy.spec.ts" time="9.811">
+<system-out>
+<![CDATA[BROWSER LOG: Angular is running in development mode.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: No resourceUsage cookie found.
+BROWSER LOG: Current document does not have a doctype. This may cause some Angular Material components not to behave as expected.
+BROWSER LOG: AG Grid: As of v32, suppressLoadingOverlay is deprecated. Use `loading`=false instead.
+BROWSER LOG: Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+BROWSER LOG: {details: Unable to fetch repository. Please check VCS access.}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

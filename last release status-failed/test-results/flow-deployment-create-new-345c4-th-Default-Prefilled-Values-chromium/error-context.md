@@ -1,0 +1,160 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img [ref=e8]
+          - text: 
+        - navigation [ref=e11]:
+          - generic [ref=e12]:
+            - link [ref=e13] [cursor=pointer]:
+              - /url: https://docs.nimbuz.tech/
+              - text: Docs
+              - generic [ref=e14]: 
+            - tablist [ref=e15]:
+              - button [ref=e16] [cursor=pointer]: $
+          - generic [ref=e17]:
+            - button [ref=e18] [cursor=pointer]:
+              - generic [ref=e23]: TE
+            - text:  
+    - navigation [ref=e26]:
+      - list [ref=e27]:
+        - listitem [ref=e28]: info >
+        - listitem [ref=e29]: ap-south-1 >
+        - listitem [ref=e30]: Test-A
+        - listitem [ref=e31]
+        - listitem [ref=e33]:
+          - generic [ref=e34]:
+            - img [ref=e35]
+            - generic [ref=e36] [cursor=pointer]: Switch
+    - generic [ref=e37]:
+      - generic [ref=e43]:
+        - link [ref=e45] [cursor=pointer]:
+          - /url: /projects
+          - generic:
+            - generic: 
+          - generic [ref=e46]: Projects
+        - link [ref=e48] [cursor=pointer]:
+          - /url: /dashboard
+          - generic:
+            - generic: 
+          - generic [ref=e49]: Dashboard
+        - link [ref=e51] [cursor=pointer]:
+          - /url: /applications
+          - generic:
+            - generic: 
+          - generic [ref=e52]: Applications
+        - link [ref=e54] [cursor=pointer]:
+          - /url: /tools
+          - generic:
+            - generic: 
+          - generic [ref=e55]: Tools
+        - link [ref=e57] [cursor=pointer]:
+          - /url: /llm-models
+          - generic:
+            - generic: 
+          - generic [ref=e58]: AI Models
+        - link [ref=e60] [cursor=pointer]:
+          - /url: /billing
+          - generic:
+            - generic: 
+          - generic [ref=e61]: Billing
+      - button [ref=e63] [cursor=pointer]
+      - generic [ref=e65]:
+        - generic [ref=e66]: Light Mode
+        - generic [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: 
+          - generic [ref=e72]: 
+    - generic [ref=e74]:
+      - navigation [ref=e76]:
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - link [ref=e79] [cursor=pointer]:
+              - /url: /projects
+              - text: Home
+          - listitem [ref=e80]:
+            - text: ">"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: /applications
+              - text: Applications
+          - listitem [ref=e82]: "> Create Application"
+      - generic [ref=e83]:
+        - heading [level=2] [ref=e86]: New Application
+        - paragraph [ref=e87]: Deploy your app to production effortlessly
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e93] [cursor=pointer]: General
+          - generic [ref=e96] [cursor=pointer]: Environment variable
+          - generic [ref=e99] [cursor=pointer]: Secrets
+          - generic [ref=e102] [cursor=pointer]: Config as file
+          - generic [ref=e105] [cursor=pointer]: Review
+        - separator [ref=e106]
+        - generic [ref=e110]:
+          - generic [ref=e112]:
+            - generic [ref=e113]: Choose a deployment type *
+            - combobox [ref=e114]:
+              - generic [ref=e117] [cursor=pointer]: Deploy zip/tar
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - generic [ref=e121]: "Instance Price :"
+              - generic [ref=e122]: $0.0004 / hr $0.2635 /mo
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e125]: Name *
+                - textbox [ref=e126]
+              - generic [ref=e127]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]:
+                    - text: Replicas
+                    - generic [ref=e131] [cursor=pointer]: 
+                  - generic [ref=e133]: Auto scaling
+                - textbox [ref=e136]: "1"
+              - generic [ref=e137]:
+                - generic [ref=e139]:
+                  - generic [ref=e140]: Instance Type *
+                  - generic [ref=e141]:
+                    - text: (
+                    - generic [ref=e142]: "CPU: 0.0150"
+                    - generic [ref=e143]: "Memory: 0.1280"
+                    - text: )
+                - combobox [ref=e144]
+              - generic [ref=e145]:
+                - generic [ref=e146]: Port
+                - textbox [ref=e147]
+              - generic [ref=e148]:
+                - generic [ref=e149]:
+                  - text: Folder Path
+                  - generic [ref=e151] [cursor=pointer]: 
+                - textbox [ref=e152]
+              - generic [ref=e153]:
+                - generic [ref=e154]:
+                  - text: Docker File Name
+                  - generic [ref=e156] [cursor=pointer]: 
+                - textbox [ref=e157]
+              - generic [ref=e158]:
+                - generic [ref=e159]: Health Endpoint
+                - textbox [ref=e160]:
+                  - /placeholder: /health
+              - generic [ref=e161]:
+                - generic [ref=e164]:
+                  - text: Ephemeral Storage
+                  - generic [ref=e166] [cursor=pointer]: 
+                - generic [ref=e167]:
+                  - textbox [ref=e168]: "2"
+                  - generic [ref=e169]: Gi
+        - button [disabled] [ref=e174]: Save & Continue
+  - dialog [ref=e177]:
+    - document:
+      - generic [ref=e179]:
+        - generic [ref=e180]:
+          - heading "Zip Deployment" [level=5] [ref=e181]
+          - button [active] [ref=e182] [cursor=pointer]
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - generic [ref=e187]: "Select a file to upload(in .zip, .tar format) :"
+            - button "Select a file to upload(in .zip, .tar format) :" [ref=e188] [cursor=pointer]
+          - button "Submit" [ref=e190] [cursor=pointer]
+```

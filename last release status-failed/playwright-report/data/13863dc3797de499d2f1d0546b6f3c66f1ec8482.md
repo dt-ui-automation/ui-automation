@@ -1,0 +1,290 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e8]
+        - text: 
+      - generic [ref=e10]:
+        - navigation
+        - navigation [ref=e11]:
+          - generic [ref=e12]:
+            - link "Docs " [ref=e13] [cursor=pointer]:
+              - /url: https://docs.nimbuz.tech/
+              - text: Docs
+              - generic [ref=e14]: 
+            - tablist "Currency selector" [ref=e15]:
+              - button "$" [ref=e16] [cursor=pointer]
+          - generic [ref=e17]:
+            - button "TE" [ref=e18] [cursor=pointer]:
+              - generic [ref=e23]: TE
+            - text:  
+  - navigation [ref=e26]:
+    - list [ref=e27]:
+      - listitem [ref=e28]: info >
+      - listitem [ref=e29]: ap-south-1 >
+      - listitem [ref=e30]: Test-A
+      - listitem [ref=e31]
+      - listitem [ref=e33]:
+        - generic [ref=e34]:
+          - img [ref=e35]
+          - generic [ref=e36] [cursor=pointer]: Switch
+  - generic [ref=e37]:
+    - generic [ref=e43]:
+      - link " Projects" [ref=e45] [cursor=pointer]:
+        - /url: /projects
+        - generic:
+          - generic: 
+        - generic [ref=e46]: Projects
+      - link " Dashboard" [ref=e48] [cursor=pointer]:
+        - /url: /dashboard
+        - generic:
+          - generic: 
+        - generic [ref=e49]: Dashboard
+      - link " Applications" [ref=e51] [cursor=pointer]:
+        - /url: /applications
+        - generic:
+          - generic: 
+        - generic [ref=e52]: Applications
+      - link " Tools" [ref=e54] [cursor=pointer]:
+        - /url: /tools
+        - generic:
+          - generic: 
+        - generic [ref=e55]: Tools
+      - link " AI Models" [ref=e57] [cursor=pointer]:
+        - /url: /llm-models
+        - generic:
+          - generic: 
+        - generic [ref=e58]: AI Models
+      - link " Billing" [ref=e60] [cursor=pointer]:
+        - /url: /billing
+        - generic:
+          - generic: 
+        - generic [ref=e61]: Billing
+    - button [ref=e63] [cursor=pointer]
+    - generic [ref=e65]:
+      - generic [ref=e66]: Light Mode
+      - generic [ref=e69]:
+        - checkbox " " [checked]
+        - generic [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: 
+          - generic [ref=e72]: 
+  - generic [ref=e74]:
+    - navigation "breadcrumb" [ref=e76]:
+      - list [ref=e77]:
+        - listitem [ref=e78]:
+          - link "Home" [ref=e79] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e80]: "> Applications"
+    - generic [ref=e81]:
+      - heading "Applications" [level=2] [ref=e84]
+      - paragraph [ref=e85]: Upload a ZIP or connect to VCS to automate deployment, configuration, and scaling.
+    - generic [ref=e88]:
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - text: "Quick Filter:"
+          - textbox "Filter..." [ref=e91]
+        - button " New Application" [ref=e93] [cursor=pointer]:
+          - generic [ref=e94]: 
+          - text: New Application
+      - generic [ref=e96]:
+        - generic [ref=e97]: 1 to 6 of 6. Page 1 of 1
+        - treegrid [ref=e98]:
+          - rowgroup [ref=e99]:
+            - row "Name Date URL Application Status Last Release Status Instance Type" [ref=e100]:
+              - columnheader "Name" [ref=e101] [cursor=pointer]:
+                - text: 
+                - generic [ref=e103]: 
+                - generic [ref=e104]: Name
+                - generic:    
+              - columnheader "Date" [ref=e105] [cursor=pointer]:
+                - text: 
+                - generic [ref=e107]: 
+                - generic [ref=e108]: Date
+                - generic:    
+              - columnheader "URL" [ref=e109] [cursor=pointer]:
+                - text: 
+                - generic [ref=e111]: URL
+                - text: 
+                - generic:    
+              - columnheader "Application Status" [ref=e112] [cursor=pointer]:
+                - text: 
+                - generic [ref=e114]: Application Status
+                - text: 
+                - generic:    
+              - columnheader "Last Release Status" [ref=e115] [cursor=pointer]:
+                - text: 
+                - generic [ref=e117]: Last Release Status
+                - text: 
+                - generic:    
+              - columnheader "Instance Type" [ref=e118] [cursor=pointer]:
+                - text: 
+                - generic [ref=e120]: Instance Type
+                - text: 
+                - generic:    
+              - columnheader [ref=e121] [cursor=pointer]:
+                - text: 
+                - text: 
+                - generic:    
+          - rowgroup [ref=e123]:
+            - row "vuejs-app-final-01 04/24/2026 Public:https://vuejs-app-final-01-env-9jqqlcoe4y.dev.lb.nimbuz.tech Private:http://vuejs-app-final-01  running  success micro.m  View Logs Redeploy Pause" [ref=e124]:
+              - gridcell "vuejs-app-final-01" [ref=e125] [cursor=pointer]
+              - gridcell "04/24/2026" [ref=e126] [cursor=pointer]
+              - gridcell "Public:https://vuejs-app-final-01-env-9jqqlcoe4y.dev.lb.nimbuz.tech Private:http://vuejs-app-final-01" [ref=e127] [cursor=pointer]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]:
+                    - text: "Public:"
+                    - link "https://vuejs-app-final-01-env-9jqqlcoe4y.dev.lb.nimbuz.tech" [ref=e130]:
+                      - /url: https://vuejs-app-final-01-env-9jqqlcoe4y.dev.lb.nimbuz.tech
+                  - generic "Endpoint not ready yet" [ref=e131]:
+                    - text: "Private:"
+                    - link "http://vuejs-app-final-01" [ref=e132]:
+                      - /url: https://vuejs-app-final-01
+              - gridcell " running" [ref=e133] [cursor=pointer]:
+                - generic [ref=e135]:
+                  - generic [ref=e136]: 
+                  - text: running
+              - gridcell " success" [ref=e137] [cursor=pointer]:
+                - generic [ref=e139]:
+                  - generic [ref=e140]: 
+                  - text: success
+              - gridcell "micro.m" [ref=e141] [cursor=pointer]
+              - gridcell " View Logs Redeploy Pause" [ref=e142] [cursor=pointer]:
+                - generic [ref=e144]:
+                  - button "" [active] [ref=e145]:
+                    - generic [ref=e146]: 
+                  - list [ref=e147]:
+                    - listitem [ref=e148]:
+                      - generic [ref=e149]: View Logs
+                    - listitem [ref=e150]:
+                      - generic [ref=e151]: Redeploy
+                    - listitem [ref=e152]:
+                      - generic [ref=e153]: Pause
+            - row "vuejs-app-final-02 04/24/2026 Public:https://vuejs-app-final-02-env-9jqqlcoe4y.dev.lb.nimbuz.tech Private:http://vuejs-app-final-02  degraded  success femto.m " [ref=e154]:
+              - gridcell "vuejs-app-final-02" [ref=e155] [cursor=pointer]
+              - gridcell "04/24/2026" [ref=e156] [cursor=pointer]
+              - gridcell "Public:https://vuejs-app-final-02-env-9jqqlcoe4y.dev.lb.nimbuz.tech Private:http://vuejs-app-final-02" [ref=e157] [cursor=pointer]:
+                - generic [ref=e158]:
+                  - generic [ref=e159]:
+                    - text: "Public:"
+                    - link "https://vuejs-app-final-02-env-9jqqlcoe4y.dev.lb.nimbuz.tech" [ref=e160]:
+                      - /url: https://vuejs-app-final-02-env-9jqqlcoe4y.dev.lb.nimbuz.tech
+                  - generic "Endpoint not ready yet" [ref=e161]:
+                    - text: "Private:"
+                    - link "http://vuejs-app-final-02" [ref=e162]:
+                      - /url: https://vuejs-app-final-02
+              - gridcell " degraded" [ref=e163] [cursor=pointer]:
+                - generic [ref=e165]:
+                  - generic [ref=e166]: 
+                  - text: degraded
+              - gridcell " success" [ref=e167] [cursor=pointer]:
+                - generic [ref=e169]:
+                  - generic [ref=e170]: 
+                  - text: success
+              - gridcell "femto.m" [ref=e171] [cursor=pointer]
+              - gridcell "" [ref=e172] [cursor=pointer]:
+                - button "" [ref=e175]:
+                  - generic [ref=e176]: 
+            - row "vuejs-app-final-03 04/24/2026 Private:http://vuejs-app-final-03  degraded  success femto.m " [ref=e177]:
+              - gridcell "vuejs-app-final-03" [ref=e178] [cursor=pointer]
+              - gridcell "04/24/2026" [ref=e179] [cursor=pointer]
+              - gridcell "Private:http://vuejs-app-final-03" [ref=e180] [cursor=pointer]:
+                - generic "Endpoint not ready yet" [ref=e182]:
+                  - text: "Private:"
+                  - link "http://vuejs-app-final-03" [ref=e183]:
+                    - /url: https://vuejs-app-final-03
+              - gridcell " degraded" [ref=e184] [cursor=pointer]:
+                - generic [ref=e186]:
+                  - generic [ref=e187]: 
+                  - text: degraded
+              - gridcell " success" [ref=e188] [cursor=pointer]:
+                - generic [ref=e190]:
+                  - generic [ref=e191]: 
+                  - text: success
+              - gridcell "femto.m" [ref=e192] [cursor=pointer]
+              - gridcell "" [ref=e193] [cursor=pointer]:
+                - button "" [ref=e196]:
+                  - generic [ref=e197]: 
+            - row "vuejs-app-final-05 04/24/2026 Private:http://vuejs-app-final-05  not available  success pico.m " [ref=e198]:
+              - gridcell "vuejs-app-final-05" [ref=e199] [cursor=pointer]
+              - gridcell "04/24/2026" [ref=e200] [cursor=pointer]
+              - gridcell "Private:http://vuejs-app-final-05" [ref=e201] [cursor=pointer]:
+                - generic "Endpoint not ready yet" [ref=e203]:
+                  - text: "Private:"
+                  - link "http://vuejs-app-final-05" [ref=e204]:
+                    - /url: https://vuejs-app-final-05
+              - gridcell " not available" [ref=e205] [cursor=pointer]:
+                - generic [ref=e207]:
+                  - generic [ref=e208]: 
+                  - text: not available
+              - gridcell " success" [ref=e209] [cursor=pointer]:
+                - generic [ref=e211]:
+                  - generic [ref=e212]: 
+                  - text: success
+              - gridcell "pico.m" [ref=e213] [cursor=pointer]
+              - gridcell "" [ref=e214] [cursor=pointer]:
+                - button "" [ref=e217]:
+                  - generic [ref=e218]: 
+            - row "vuejs-app-final-04 04/24/2026 Public:https://vuejs-app-final-04-env-9jqqlcoe4y.dev.lb.nimbuz.tech Private:http://vuejs-app-final-04  degraded  success 2xlarge.r " [ref=e219]:
+              - gridcell "vuejs-app-final-04" [ref=e220] [cursor=pointer]
+              - gridcell "04/24/2026" [ref=e221] [cursor=pointer]
+              - gridcell "Public:https://vuejs-app-final-04-env-9jqqlcoe4y.dev.lb.nimbuz.tech Private:http://vuejs-app-final-04" [ref=e222] [cursor=pointer]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]:
+                    - text: "Public:"
+                    - link "https://vuejs-app-final-04-env-9jqqlcoe4y.dev.lb.nimbuz.tech" [ref=e225]:
+                      - /url: https://vuejs-app-final-04-env-9jqqlcoe4y.dev.lb.nimbuz.tech
+                  - generic "Endpoint not ready yet" [ref=e226]:
+                    - text: "Private:"
+                    - link "http://vuejs-app-final-04" [ref=e227]:
+                      - /url: https://vuejs-app-final-04
+              - gridcell " degraded" [ref=e228] [cursor=pointer]:
+                - generic [ref=e230]:
+                  - generic [ref=e231]: 
+                  - text: degraded
+              - gridcell " success" [ref=e232] [cursor=pointer]:
+                - generic [ref=e234]:
+                  - generic [ref=e235]: 
+                  - text: success
+              - gridcell "2xlarge.r" [ref=e236] [cursor=pointer]
+              - gridcell "" [ref=e237] [cursor=pointer]:
+                - button "" [ref=e240]:
+                  - generic [ref=e241]: 
+            - row "vuejs-app-final-06 04/24/2026 Private:http://vuejs-app-final-06  not available  success femto.m " [ref=e242]:
+              - gridcell "vuejs-app-final-06" [ref=e243] [cursor=pointer]
+              - gridcell "04/24/2026" [ref=e244] [cursor=pointer]
+              - gridcell "Private:http://vuejs-app-final-06" [ref=e245] [cursor=pointer]:
+                - generic "Endpoint not ready yet" [ref=e247]:
+                  - text: "Private:"
+                  - link "http://vuejs-app-final-06" [ref=e248]:
+                    - /url: https://vuejs-app-final-06
+              - gridcell " not available" [ref=e249] [cursor=pointer]:
+                - generic [ref=e251]:
+                  - generic [ref=e252]: 
+                  - text: not available
+              - gridcell " success" [ref=e253] [cursor=pointer]:
+                - generic [ref=e255]:
+                  - generic [ref=e256]: 
+                  - text: success
+              - gridcell "femto.m" [ref=e257] [cursor=pointer]
+              - gridcell "" [ref=e258] [cursor=pointer]:
+                - button "" [ref=e261]:
+                  - generic [ref=e262]: 
+          - rowgroup
+          - rowgroup [ref=e266]
+          - rowgroup
+        - generic [ref=e270]:
+          - generic [ref=e271]:
+            - generic [ref=e272]: "Page Size:"
+            - combobox "Page Size" [ref=e273]:
+              - generic [ref=e274]: "20"
+              - generic [ref=e275] [cursor=pointer]: 
+          - generic [ref=e276]: 1 to 6 of 6
+          - button "First Page" [disabled] [ref=e277]: 
+          - button "Previous Page" [disabled] [ref=e278]: 
+          - generic [ref=e279]: Page 1 of 1
+          - button "Next Page" [disabled] [ref=e280]: 
+          - button "Last Page" [disabled] [ref=e281]: 
+```

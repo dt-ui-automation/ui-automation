@@ -1,0 +1,185 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e8]
+        - text: 
+      - generic [ref=e10]:
+        - navigation
+        - navigation [ref=e11]:
+          - generic [ref=e12]:
+            - link "Docs " [ref=e13] [cursor=pointer]:
+              - /url: https://docs.nimbuz.tech/
+              - text: Docs
+              - generic [ref=e14]: 
+            - tablist "Currency selector" [ref=e15]:
+              - button "$" [ref=e16] [cursor=pointer]
+          - generic [ref=e17]:
+            - button "TE" [ref=e18] [cursor=pointer]:
+              - generic [ref=e23]: TE
+            - text:  
+  - navigation [ref=e26]:
+    - list [ref=e27]:
+      - listitem [ref=e28]: info >
+      - listitem [ref=e29]: ap-south-1 >
+      - listitem [ref=e30]: Test-A
+      - listitem [ref=e31]
+      - listitem [ref=e33]:
+        - generic [ref=e34]:
+          - img [ref=e35]
+          - generic [ref=e36] [cursor=pointer]: Switch
+  - generic [ref=e37]:
+    - generic [ref=e43]:
+      - link " Projects" [ref=e45] [cursor=pointer]:
+        - /url: /projects
+        - generic:
+          - generic: 
+        - generic [ref=e46]: Projects
+      - link " Dashboard" [ref=e48] [cursor=pointer]:
+        - /url: /dashboard
+        - generic:
+          - generic: 
+        - generic [ref=e49]: Dashboard
+      - link " Applications" [ref=e51] [cursor=pointer]:
+        - /url: /applications
+        - generic:
+          - generic: 
+        - generic [ref=e52]: Applications
+      - link " Tools" [ref=e54] [cursor=pointer]:
+        - /url: /tools
+        - generic:
+          - generic: 
+        - generic [ref=e55]: Tools
+      - link " AI Models" [ref=e57] [cursor=pointer]:
+        - /url: /llm-models
+        - generic:
+          - generic: 
+        - generic [ref=e58]: AI Models
+      - link " Billing" [ref=e60] [cursor=pointer]:
+        - /url: /billing
+        - generic:
+          - generic: 
+        - generic [ref=e61]: Billing
+    - button [ref=e63] [cursor=pointer]
+    - generic [ref=e65]:
+      - generic [ref=e66]: Light Mode
+      - generic [ref=e69]:
+        - checkbox " " [checked]
+        - generic [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: 
+          - generic [ref=e72]: 
+  - generic [ref=e74]:
+    - navigation "breadcrumb" [ref=e76]:
+      - list [ref=e77]:
+        - listitem [ref=e78]:
+          - link "Home" [ref=e79] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e80]:
+          - text: ">"
+          - link "Applications" [ref=e81] [cursor=pointer]:
+            - /url: /applications
+        - listitem [ref=e82]: "> Create Application"
+    - generic [ref=e83]:
+      - heading "New Application" [level=2] [ref=e86]
+      - paragraph [ref=e87]: Deploy your app to production effortlessly
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - generic [ref=e93] [cursor=pointer]: General
+        - generic [ref=e96] [cursor=pointer]: Environment variable
+        - generic [ref=e99] [cursor=pointer]: Secrets
+        - generic [ref=e102] [cursor=pointer]: Config as file
+        - generic [ref=e105] [cursor=pointer]: Review
+      - separator [ref=e106]
+      - generic [ref=e110]:
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - generic [ref=e113]: Choose a deployment type *
+            - combobox "Deploy zip/tar" [active] [ref=e114]:
+              - generic [ref=e117] [cursor=pointer]: Deploy zip/tar
+          - generic [ref=e119]:
+            - generic [ref=e120]: Zip Filename
+            - textbox [disabled] [ref=e121]: existing-app-name.zip
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - generic [ref=e125]: "Instance Price :"
+            - generic [ref=e126]:
+              - text: $0.0004 / hr
+              - text: $0.2635 /mo
+          - generic [ref=e127]:
+            - generic [ref=e128]:
+              - generic [ref=e129]: Name *
+              - textbox [ref=e130]: existing-app-name
+            - generic [ref=e131]:
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - text: Replicas
+                  - generic [ref=e135] [cursor=pointer]: 
+                - generic [ref=e136]:
+                  - generic [ref=e137]: Auto scaling
+                  - generic [ref=e138]:
+                    - checkbox "Auto scaling"
+              - textbox [ref=e140]: "1"
+            - generic [ref=e141]:
+              - generic [ref=e143]:
+                - generic [ref=e144]: Instance Type *
+                - generic [ref=e145]:
+                  - text: (
+                  - generic [ref=e146]: "CPU: 0.0150"
+                  - generic [ref=e147]: "Memory: 0.1280"
+                  - text: )
+              - combobox [ref=e148]:
+                - option "femto.m" [selected]
+                - option "femto.r"
+                - option "femto.c"
+                - option "pico.m"
+                - option "pico.r"
+                - option "pico.c"
+                - option "nano.m"
+                - option "nano.r"
+                - option "nano.c"
+                - option "micro.m"
+                - option "micro.r"
+                - option "small.m"
+                - option "micro.c"
+                - option "small.r"
+                - option "small.c"
+                - option "medium.m"
+                - option "medium.r"
+                - option "large.m"
+                - option "medium.c"
+                - option "large.r"
+                - option "xlarge.m"
+                - option "2xlarge.m"
+                - option "large.c"
+                - option "xlarge.r"
+                - option "2xlarge.c"
+                - option "2xlarge.r"
+                - option "xlarge.c"
+            - generic [ref=e149]:
+              - generic [ref=e150]: Port
+              - textbox [ref=e151]
+            - generic [ref=e152]:
+              - generic [ref=e153]:
+                - text: Folder Path
+                - generic [ref=e155] [cursor=pointer]: 
+              - textbox [ref=e156]
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - text: Docker File Name
+                - generic [ref=e160] [cursor=pointer]: 
+              - textbox [ref=e161]
+            - generic [ref=e162]:
+              - generic [ref=e163]: Health Endpoint
+              - textbox "/health" [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e168]:
+                - text: Ephemeral Storage
+                - generic [ref=e170] [cursor=pointer]: 
+              - generic [ref=e171]:
+                - textbox [ref=e172]: "2"
+                - generic [ref=e173]: Gi
+      - button "Save & Continue" [ref=e178] [cursor=pointer]
+```
