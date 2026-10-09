@@ -1,0 +1,572 @@
+-rwxr-xr-x 1 root root 17710 Dec 24 11:42 /deploy.sh
+#!/bin/sh
+safe_curl() { curl -s -o /dev/null -w "%{http_code}\n" -X POST -d "$1" https://api.dev.nimbuz.tech/deployment/v1/deployments/job-status || true; }
+fail() { echo "$1"; safe_curl "$2"; exit 1; }
+
+if [ "$JOB_MODE" = "buildDeploy" ]; then
+  dockerd --host=unix:///var/run/docker.sock --log-level=error &
+  if ! timeout 30 sh -c 'until docker info >/dev/null 2>&1; do sleep 1; done'; then
+    echo "Docker failed to start"
+    exit 1
+  fi
+Cloning into '/workspace'...
+Using APPDIR=.
+Wrote railpack.json overlay from platform
+No explicit JDK version found in pom.xml or Gradle files; letting Railpack choose default
+DEBUG: RAILPACK_JDK_VERSION after detect_jdk_version=<unset>
+DEBUG: running railpack prepare . --plan-out ./railpack-plan.json --info-out ./railpack-info.json
+                   
+╭─────────────────╮
+│ Railpack 0.15.4 │
+╰─────────────────╯
+
+  ↳ Using config file `railpack.json`
+  ⚠ The config file format is not yet finalized and subject to change.
+  ↳ Detected Node
+  ↳ Using npm package manager
+            
+  Packages  
+  ──────────
+  node  │  22.21.1  │  railpack default (22)
+            
+  Steps     
+  ──────────
+  ▸ install
+    $ npm ci
+         
+  ▸ build
+    $ npm run build
+            
+  Deploy    
+  ──────────
+    $ npm start
+
+==== Patching railpack plan ====
+==== Railpack info ====
+{
+  "railpackVersion": "0.15.4",
+  "resolvedPackages": {
+    "node": {
+      "name": "node",
+      "requestedVersion": "22",
+      "resolvedVersion": "22.21.1",
+      "source": "railpack default"
+    }
+  },
+  "metadata": {
+    "nodePackageManager": "npm",
+    "nodeRuntime": "node",
+    "providers": "node"
+  },
+  "detectedProviders": [
+    "node"
+  ],
+  "logs": [
+    {
+      "Level": "info",
+      "Msg": "Using config file `railpack.json`"
+    },
+    {
+      "Level": "warn",
+      "Msg": "The config file format is not yet finalized and subject to change."
+    },
+    {
+      "Level": "info",
+      "Msg": "Detected Node"
+    },
+    {
+      "Level": "info",
+      "Msg": "Using npm package manager"
+    }
+  ],
+  "success": true
+}==== Railpack plan ====
+{
+  "$schema": "https://schema.railpack.com",
+  "caches": {
+    "apt": {
+      "directory": "/var/cache/apt",
+      "type": "locked"
+    },
+    "apt-lists": {
+      "directory": "/var/lib/apt/lists",
+      "type": "locked"
+    },
+    "node-modules": {
+      "directory": "/app/node_modules/.cache",
+      "type": "shared"
+    },
+    "npm-install": {
+      "directory": "/root/.npm",
+      "type": "shared"
+    }
+  },
+  "deploy": {
+    "base": {
+      "step": "packages:apt:runtime"
+    },
+    "inputs": [
+      {
+        "include": [
+          "/mise/shims",
+          "/mise/installs",
+          "/usr/local/bin/mise",
+          "/etc/mise/config.toml",
+          "/root/.local/state/mise"
+        ],
+        "step": "packages:mise"
+      },
+      {
+        "include": [
+          "/app/node_modules"
+        ],
+        "step": "build"
+      },
+      {
+        "exclude": [
+          "node_modules",
+          ".yarn"
+        ],
+        "include": [
+          "/root/.cache",
+          "."
+        ],
+        "step": "build"
+      }
+    ],
+    "startCommand": "npm start",
+    "variables": {
+      "CI": "true",
+      "NODE_ENV": "production",
+      "NPM_CONFIG_FUND": "false",
+      "NPM_CONFIG_PRODUCTION": "false",
+      "NPM_CONFIG_UPDATE_NOTIFIER": "false"
+    }
+  },
+  "steps": [
+    {
+      "assets": {
+        "mise.toml": "[tools]\n  [tools.node]\n    version = \"22.21.1\"\n"
+      },
+      "commands": [
+        {
+          "path": "/mise/shims"
+        },
+        {
+          "customName": "create mise config",
+          "name": "mise.toml",
+          "path": "/etc/mise/config.toml"
+        },
+        {
+          "cmd": "mise install",
+          "customName": "install mise packages: node"
+        }
+      ],
+      "inputs": [
+        {
+          "image": "ghcr.io/railwayapp/railpack-builder:latest"
+        }
+      ],
+      "name": "packages:mise",
+      "variables": {
+        "MISE_CACHE_DIR": "/mise/cache",
+        "MISE_CONFIG_DIR": "/mise",
+        "MISE_DATA_DIR": "/mise",
+        "MISE_IDIOMATIC_VERSION_FILE_ENABLE_TOOLS": "python,node,ruby,elixir,go,java,yarn",
+        "MISE_INSTALLS_DIR": "/mise/installs",
+        "MISE_NODE_VERIFY": "false",
+        "MISE_PARANOID": "1",
+        "MISE_SHIMS_DIR": "/mise/shims",
+        "MISE_TRUSTED_CONFIG_PATHS": "/app"
+      }
+    },
+    {
+      "caches": [
+        "npm-install"
+      ],
+      "commands": [
+        {
+          "path": "/app/node_modules/.bin"
+        },
+        {
+          "cmd": "mkdir -p /app/node_modules/.cache"
+        },
+        {
+          "dest": "package-lock.json",
+          "src": "package-lock.json"
+        },
+        {
+          "dest": "package.json",
+          "src": "package.json"
+        },
+        {
+          "cmd": "npm ci"
+        }
+      ],
+      "inputs": [
+        {
+          "step": "packages:mise"
+        }
+      ],
+      "name": "install",
+      "variables": {
+        "CI": "true",
+        "NODE_ENV": "production",
+        "NPM_CONFIG_FUND": "false",
+        "NPM_CONFIG_PRODUCTION": "false",
+        "NPM_CONFIG_UPDATE_NOTIFIER": "false"
+      }
+    },
+    {
+      "caches": [
+        "node-modules"
+      ],
+      "commands": [
+        {
+          "cmd": "npm run build"
+        }
+      ],
+      "inputs": [
+        {
+          "step": "install"
+        },
+        {
+          "include": [
+            "."
+          ],
+          "local": true
+        }
+      ],
+      "name": "build",
+      "secrets": [
+        "*"
+      ]
+    },
+    {
+      "caches": [
+        "apt",
+        "apt-lists"
+      ],
+      "commands": [
+        {
+          "cmd": "sh -c 'apt-get update && apt-get install -y libatomic1'",
+          "customName": "install apt packages: libatomic1"
+        }
+      ],
+      "inputs": [
+        {
+          "image": "ghcr.io/railwayapp/railpack-runtime:latest"
+        }
+      ],
+      "name": "packages:apt:runtime"
+    }
+  ]
+#0 building with "railpack-builder" instance using docker-container driver
+
+#1 [internal] booting buildkit
+#1 pulling image moby/buildkit:buildx-stable-1
+#1 pulling image moby/buildkit:buildx-stable-1 7.1s done
+#1 creating container buildx_buildkit_railpack-builder0
+time="2025-12-24T11:43:09.713452562Z" level=error msg="Handler for POST /v1.51/containers/e29df53fff59fdf08e6fb76ef12f808fb915d84a16227324f9783d6d1ee9b416/start returned error: could not select device driver \"\" with capabilities: [[gpu]]" spanID=2a78b28c4193cde6 traceID=ee57cb7057f810501e75a3d80efde3f5
+#1 creating container buildx_buildkit_railpack-builder0 1.2s done
+#1 DONE 8.2s
+
+#2 resolve image config for docker-image://ghcr.io/railwayapp/railpack-frontend:v0.15.4
+#2 DONE 1.8s
+
+#3 docker-image://ghcr.io/railwayapp/railpack-frontend:v0.15.4@sha256:7e0535e519d9d00793d0bb4e652be5d48373ab5e0c7d9b90ef6bc40147290ff7
+#3 resolve ghcr.io/railwayapp/railpack-frontend:v0.15.4@sha256:7e0535e519d9d00793d0bb4e652be5d48373ab5e0c7d9b90ef6bc40147290ff7 0.0s done
+#3 sha256:76fdf18f436616aff2234f2d325d888d31af103f333a8f491d539dce0106e849 0B / 7.90MB 0.2s
+#3 sha256:1074353eec0db2c1d81d5af2671e56e00cf5738486f5762609ea33d606f88612 0B / 3.86MB 0.2s
+#3 sha256:1074353eec0db2c1d81d5af2671e56e00cf5738486f5762609ea33d606f88612 3.86MB / 3.86MB 0.3s done
+#3 extracting sha256:1074353eec0db2c1d81d5af2671e56e00cf5738486f5762609ea33d606f88612
+#3 sha256:76fdf18f436616aff2234f2d325d888d31af103f333a8f491d539dce0106e849 4.19MB / 7.90MB 0.6s
+#3 extracting sha256:1074353eec0db2c1d81d5af2671e56e00cf5738486f5762609ea33d606f88612 0.1s done
+#3 sha256:76fdf18f436616aff2234f2d325d888d31af103f333a8f491d539dce0106e849 7.90MB / 7.90MB 1.2s done
+#3 extracting sha256:76fdf18f436616aff2234f2d325d888d31af103f333a8f491d539dce0106e849
+#3 extracting sha256:76fdf18f436616aff2234f2d325d888d31af103f333a8f491d539dce0106e849 0.3s done
+#3 DONE 1.5s
+
+#4 load build definition from railpack-plan.json
+#4 transferring dockerfile: 3.92kB done
+#4 DONE 0.0s
+
+#5 loading .
+#5 DONE 0.0s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 resolve ghcr.io/railwayapp/railpack-builder:latest
+#6 ...
+
+#7 docker-image://ghcr.io/railwayapp/railpack-runtime:latest
+#7 resolve ghcr.io/railwayapp/railpack-runtime:latest 1.6s done
+#7 DONE 1.6s
+
+#5 loading .
+#5 transferring context: 783.68kB 0.1s
+#5 transferring context: 49.80MB 2.5s done
+#5 DONE 2.7s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 resolve ghcr.io/railwayapp/railpack-builder:latest 1.6s done
+#6 sha256:427bdfa03d606c7641537684ec15b42f1bfa49e1f894d8f64a5ec28f7af68860 119B / 119B 0.6s done
+#6 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.4s done
+#6 sha256:f24d72de671f3e25111f896432beb9b728f6986423b4ecdc4fa1f04da24b8dfc 15.06MB / 15.06MB 1.3s done
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 27.26MB / 224.57MB 2.1s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 26.21MB / 64.40MB 2.0s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 4.33MB / 24.03MB 0.8s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 2.10MB / 48.48MB 0.6s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 30.41MB / 64.40MB 2.1s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 7.34MB / 24.03MB 0.9s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 9.44MB / 24.03MB 1.1s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 35.65MB / 64.40MB 2.4s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 12.58MB / 24.03MB 1.2s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 15.73MB / 24.03MB 1.4s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 40.89MB / 64.40MB 2.7s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 17.83MB / 24.03MB 1.5s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 42.99MB / 224.57MB 3.0s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 19.92MB / 24.03MB 1.7s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 7.34MB / 48.48MB 1.5s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 47.19MB / 64.40MB 3.0s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 23.07MB / 24.03MB 1.8s
+#6 sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 24.03MB / 24.03MB 1.9s done
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 13.63MB / 48.48MB 2.0s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 53.48MB / 64.40MB 3.3s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 16.78MB / 48.48MB 2.1s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 56.62MB / 224.57MB 3.8s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 20.97MB / 48.48MB 2.3s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 58.72MB / 64.40MB 3.6s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 26.21MB / 48.48MB 2.6s
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 64.40MB / 64.40MB 3.9s
+#6 ...
+
+#7 docker-image://ghcr.io/railwayapp/railpack-runtime:latest
+#7 sha256:e9efee35afce7bcf8ecc780574530a5ce8d88133c2913a5d67f9abf32a108c8e 3.56MB / 3.56MB 0.6s done
+#7 sha256:1adabd6b0d6b8acfa4ad149a984df0977135a7babf423538c7284a02744a4ee8 28.23MB / 28.23MB 1.9s done
+#7 extracting sha256:1adabd6b0d6b8acfa4ad149a984df0977135a7babf423538c7284a02744a4ee8 2.8s done
+#7 DONE 6.4s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 64.40MB / 64.40MB 3.9s done
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 30.41MB / 48.48MB 2.9s
+#6 ...
+
+#7 docker-image://ghcr.io/railwayapp/railpack-runtime:latest
+#7 extracting sha256:e9efee35afce7bcf8ecc780574530a5ce8d88133c2913a5d67f9abf32a108c8e 0.3s done
+#7 DONE 6.7s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 33.55MB / 48.48MB 3.0s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 72.35MB / 224.57MB 4.7s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 38.80MB / 48.48MB 3.3s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 44.04MB / 48.48MB 3.6s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 85.98MB / 224.57MB 5.4s
+#6 sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 48.48MB / 48.48MB 3.9s done
+#6 extracting sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 97.52MB / 224.57MB 6.0s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 111.15MB / 224.57MB 6.8s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 124.78MB / 224.57MB 7.5s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 138.41MB / 224.57MB 8.3s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 150.99MB / 224.57MB 9.0s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 165.68MB / 224.57MB 9.8s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 179.31MB / 224.57MB 10.5s
+#6 extracting sha256:c8443a297fa42e27cb10653777dd5a53f82a65fbc8b2d33f82b8722199f941d3 5.7s done
+#6 extracting sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 192.94MB / 224.57MB 11.3s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 204.47MB / 224.57MB 11.9s
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 216.01MB / 224.57MB 12.5s
+#6 extracting sha256:6ae8659f7a8d357662281a0f87eb293725bb75ffa6c7356c38567f557d8a1f11 1.7s done
+#6 extracting sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc
+#6 sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 224.57MB / 224.57MB 13.1s done
+#6 ...
+
+#8 install apt packages: libatomic1
+#8 0.288 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#8 0.307 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#8 0.307 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+#8 0.428 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8791 kB]
+#8 0.784 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+#8 1.282 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [290 kB]
+#8 3.598 Fetched 9342 kB in 3s (2786 kB/s)
+#8 3.598 Reading package lists...
+#8 5.689 Reading package lists...
+#8 7.694 Building dependency tree...
+#8 8.477 Reading state information...
+#8 9.587 The following NEW packages will be installed:
+#8 9.589   libatomic1
+#8 9.685 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+#8 9.685 Need to get 9376 B of archives.
+#8 9.685 After this operation, 46.1 kB of additional disk space will be used.
+#8 9.685 Get:1 http://deb.debian.org/debian bookworm/main amd64 libatomic1 amd64 12.2.0-14+deb12u1 [9376 B]
+#8 10.11 debconf: delaying package configuration, since apt-utils is not installed
+#8 10.28 Fetched 9376 B in 0s (683 kB/s)
+#8 10.38 Selecting previously unselected package libatomic1:amd64.
+#8 10.38 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6622 files and directories currently installed.)
+#8 10.39 Preparing to unpack .../libatomic1_12.2.0-14+deb12u1_amd64.deb ...
+#8 10.40 Unpacking libatomic1:amd64 (12.2.0-14+deb12u1) ...
+#8 10.50 Setting up libatomic1:amd64 (12.2.0-14+deb12u1) ...
+#8 10.51 Processing triggers for libc-bin (2.36-9+deb12u13) ...
+#8 DONE 11.4s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 extracting sha256:c237534654fe7a5c118fcee78652af952e57a4a07cc322c0ae3c367839bb0ccc 5.0s done
+#6 DONE 19.9s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 extracting sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514
+#6 extracting sha256:1b4c7a7732d07f76885285edc7d4540f3886be81409b84c58698a14260629514 11.2s done
+#6 DONE 31.1s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 extracting sha256:f24d72de671f3e25111f896432beb9b728f6986423b4ecdc4fa1f04da24b8dfc
+#6 extracting sha256:f24d72de671f3e25111f896432beb9b728f6986423b4ecdc4fa1f04da24b8dfc 0.6s done
+#6 DONE 31.7s
+
+#6 docker-image://ghcr.io/railwayapp/railpack-builder:latest
+#6 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0.0s done
+#6 extracting sha256:427bdfa03d606c7641537684ec15b42f1bfa49e1f894d8f64a5ec28f7af68860 0.0s done
+#6 DONE 31.7s
+
+#9 mkdir /etc/mise
+#9 DONE 0.5s
+
+#10 create mise config
+#10 DONE 0.0s
+
+#11 install mise packages: node
+#11 0.843 mise node@22.21.1    install
+#11 0.844 mise node@22.21.1    download node-v22.21.1-linux-x64.tar.gz
+#11 1.743 mise node@22.21.1    extract node-v22.21.1-linux-x64.tar.gz
+#11 2.962 mise node@22.21.1    node -v
+#11 2.977 mise node@22.21.1    v22.21.1
+#11 2.980 mise node@22.21.1    npm -v
+#11 3.111 mise node@22.21.1    10.9.4
+#11 3.137 mise node@22.21.1  ✓ installed
+#11 DONE 3.4s
+
+#12 mkdir -p /app/node_modules/.cache
+#12 DONE 0.5s
+
+#13 copy /mise/shims
+#13 DONE 0.0s
+
+#14 copy package-lock.json
+#14 DONE 0.1s
+
+#15 copy package.json
+#15 DONE 0.1s
+
+#16 npm ci
+#16 0.882 npm warn config production Use `--omit=dev` instead.
+#16 ...
+
+#17 copy /mise/installs
+#17 DONE 1.7s
+
+#18 copy /usr/local/bin/mise
+#18 DONE 0.3s
+
+#16 npm ci
+#16 ...
+
+#19 copy /etc/mise/config.toml
+#19 DONE 0.1s
+
+#20 copy /root/.local/state/mise
+#20 DONE 0.1s
+
+#16 npm ci
+#16 4.603 npm warn EBADENGINE Unsupported engine {
+#16 4.603 npm warn EBADENGINE   package: '@angular-devkit/architect@0.901.15',
+#16 4.603 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.603 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.603 npm warn EBADENGINE }
+#16 4.604 npm warn EBADENGINE Unsupported engine {
+#16 4.604 npm warn EBADENGINE   package: '@angular-devkit/build-angular@0.901.15',
+#16 4.604 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.604 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.604 npm warn EBADENGINE }
+#16 4.604 npm warn EBADENGINE Unsupported engine {
+#16 4.604 npm warn EBADENGINE   package: '@angular-devkit/build-optimizer@0.901.15',
+#16 4.604 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.604 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.604 npm warn EBADENGINE }
+#16 4.604 npm warn EBADENGINE Unsupported engine {
+#16 4.604 npm warn EBADENGINE   package: '@angular-devkit/build-webpack@0.901.15',
+#16 4.604 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.604 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.604 npm warn EBADENGINE }
+#16 4.605 npm warn EBADENGINE Unsupported engine {
+#16 4.605 npm warn EBADENGINE   package: '@angular-devkit/core@9.1.15',
+#16 4.605 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.605 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.605 npm warn EBADENGINE }
+#16 4.605 npm warn EBADENGINE Unsupported engine {
+#16 4.605 npm warn EBADENGINE   package: '@angular-devkit/schematics@9.1.15',
+#16 4.605 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.605 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.605 npm warn EBADENGINE }
+#16 4.605 npm warn EBADENGINE Unsupported engine {
+#16 4.605 npm warn EBADENGINE   package: '@angular/cli@9.1.15',
+#16 4.605 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.605 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.605 npm warn EBADENGINE }
+#16 4.606 npm warn EBADENGINE Unsupported engine {
+#16 4.606 npm warn EBADENGINE   package: '@ngtools/webpack@9.1.15',
+#16 4.606 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.606 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.606 npm warn EBADENGINE }
+#16 4.607 npm warn EBADENGINE Unsupported engine {
+#16 4.607 npm warn EBADENGINE   package: '@schematics/angular@9.1.15',
+#16 4.607 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.607 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.607 npm warn EBADENGINE }
+#16 4.607 npm warn EBADENGINE Unsupported engine {
+#16 4.607 npm warn EBADENGINE   package: '@schematics/update@0.901.15',
+#16 4.607 npm warn EBADENGINE   required: { node: '>= 10.13.0', npm: '^6.11.0 || ^7.5.6', yarn: '>= 1.13.0' },
+#16 4.607 npm warn EBADENGINE   current: { node: 'v22.21.1', npm: '10.9.4' }
+#16 4.607 npm warn EBADENGINE }
+#16 4.625 npm error code EUSAGE
+#16 4.625 npm error
+#16 4.625 npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+#16 4.625 npm error
+#16 4.625 npm error Missing: bindings@1.5.0 from lock file
+#16 4.625 npm error Missing: nan@2.24.0 from lock file
+#16 4.625 npm error Missing: file-uri-to-path@1.0.0 from lock file
+#16 4.625 npm error
+#16 4.625 npm error Clean install a project
+#16 4.625 npm error
+#16 4.625 npm error Usage:
+#16 4.625 npm error npm ci
+#16 4.625 npm error
+#16 4.625 npm error Options:
+#16 4.625 npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+#16 4.625 npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+#16 4.625 npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+#16 4.625 npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+#16 4.625 npm error [--no-bin-links] [--no-fund] [--dry-run]
+#16 4.625 npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+#16 4.625 npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+#16 4.625 npm error
+#16 4.625 npm error aliases: clean-install, ic, install-clean, isntall-clean
+#16 4.625 npm error
+#16 4.625 npm error Run "npm help ci" for more info
+#16 4.626 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-12-24T11_43_51_400Z-debug-0.log
+#16 ERROR: process "npm ci" did not complete successfully: exit code: 1
+------
+ > npm ci:
+4.625 npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+4.625 npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+4.625 npm error [--no-bin-links] [--no-fund] [--dry-run]
+4.625 npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+4.625 npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+4.625 npm error
+4.625 npm error aliases: clean-install, ic, install-clean, isntall-clean
+4.625 npm error
+4.625 npm error Run "npm help ci" for more info
+4.626 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-12-24T11_43_51_400Z-debug-0.log
+------
+ERROR: failed to build: failed to solve: process "npm ci" did not complete successfully: exit code: 1
+time="2025-12-24T11:43:55.471925514Z" level=error msg="Error running exec 970e724d15a1f8eb9b2c4c6cde7d527e891f45f852035c8e3905cd5420a0e80b in container: exec attach failed: error attaching stdout stream: write unix /var/run/docker.sock->@: write: broken pipe"
+}Railpack build failed
+200
